@@ -43,7 +43,7 @@ class TileMapScaleLevels(object):
             raise e
 
     def getZoomlevel(self, scale):
-        if scale <> 0:
+        if scale != 0:
             zoomlevel = int(round(math.log( ((self.dpi() * self.inchesPerMeter * self.maxScalePerPixel) / scale), 2 ), 0))
             if zoomlevel > self.maxZoomlevel():
                 return self.maxZoomlevel()

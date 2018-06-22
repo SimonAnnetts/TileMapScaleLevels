@@ -48,7 +48,7 @@ class TileMapScaleLevels(object):
             raise e
 
     def getZoomlevel(self, scale):
-        if scale <> 0:
+        if scale != 0:
             zoomlevel = int(round(math.log( ((self.dpi() * self.inchesPerMeter * self.maxScalePerPixel) / scale), 2 ), 0))
             if zoomlevel > self.maxZoomlevel():
                 return self.maxZoomlevel()
@@ -64,5 +64,5 @@ class TileMapScaleLevels(object):
         return 2.0 * math.pi * self.earthRadius / self.mapWidth(zoomlevel)
 
     def calculateScaleStorage(self):
-        for zoomlevel in xrange(self.minZoomlevel(), self.maxZoomlevel()):
+        for zoomlevel in range(self.minZoomlevel(), self.maxZoomlevel()):
             self.zoomlevels[zoomlevel] = self.getScale(zoomlevel)

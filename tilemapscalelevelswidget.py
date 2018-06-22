@@ -1,7 +1,7 @@
-from ui_tilemapscalelevelswidget import Ui_TileMapScaleLevelsDockWidget
-from PyQt4 import QtGui
+from .ui_tilemapscalelevelswidget import Ui_TileMapScaleLevelsDockWidget
+from PyQt5 import QtWidgets
 
-class TileMapScaleLevelsDockWidget(QtGui.QDockWidget, Ui_TileMapScaleLevelsDockWidget):
+class TileMapScaleLevelsDockWidget(QtWidgets.QDockWidget, Ui_TileMapScaleLevelsDockWidget):
 
     def __init__(self):
         super(TileMapScaleLevelsDockWidget, self).__init__()

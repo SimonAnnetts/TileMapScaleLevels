@@ -20,17 +20,18 @@
  ***************************************************************************/
 """
 # Import the PyQt and QGIS libraries
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 from qgis.core import *
 from qgis.gui import *
 
-import resources_rc
+from .resources_rc import *
 
-from tilemapscalelevelswidget import TileMapScaleLevelsDockWidget
-from tilemapscalelevels import TileMapScaleLevels
+from .tilemapscalelevelswidget import TileMapScaleLevelsDockWidget
+from .tilemapscalelevels import TileMapScaleLevels
 
-from ui_info import Ui_info
+from .ui_info import Ui_info
 
 import os.path
 
@@ -46,7 +47,7 @@ class TileMapScalePlugin:
         self.workingDir = os.path.dirname(os.path.abspath(__file__))
         self.datasetDir = os.path.join(self.workingDir, "datasets")
         if not os.path.exists(self.datasetDir):
-            self.iface.messageBar().pushMessage("Error", "Can't find %s. You wont't be able to load any datasets." % self.datasetDir, QgsMessageBar.CRITICAL)
+            self.iface.messageBar().pushMessage("Error", "Can't find %s. You wont't be able to load any datasets." % self.datasetDir, Qgis.Critical)
             
         # initialize locale
         locale = QSettings().value("locale/userLocale")[0:2]
@@ -69,7 +70,7 @@ class TileMapScalePlugin:
 
         self.dock = TileMapScaleLevelsDockWidget()
         self.iface.addDockWidget(Qt.LeftDockWidgetArea, self.dock)
-        self.projection = self.canvas.mapRenderer().destinationCrs()
+        self.projection = self.canvas.mapSettings().destinationCrs()
         self.canvas.enableAntiAliasing(True)
 
         self.readStatus()
@@ -151,20 +152,20 @@ class TileMapScalePlugin:
         datasetPath = os.path.join(self.datasetDir, selectedDataset)
         errorMessage = "Unable to load file %s" % datasetPath
         if (selectedDataset == ""):
-            self.iface.messageBar().pushMessage("Error", errorMessage, QgsMessageBar.CRITICAL)
+            self.iface.messageBar().pushMessage("Error", errorMessage, Qgis.Critical)
         elif os.path.exists(datasetPath):
             self.iface.addRasterLayer(datasetPath, selectedDataset)
         else:
-            self.iface.messageBar().pushMessage("Error", errorMessage, QgsMessageBar.CRITICAL)
+            self.iface.messageBar().pushMessage("Error", errorMessage, Qgis.Critical)
 
     def scaleChanged(self, scale):
         if self.dock.checkBoxIsActive.isChecked():
             scale = int(scale)            
             if scale not in self.scaleCalculator.zoomlevels.values():
                 zoomlevel = self.scaleCalculator.getZoomlevel(scale)
-                if zoomlevel <> None:
+                if zoomlevel != None:
                     newScale = self.scaleCalculator.getScale(zoomlevel)
-                    if scale <> newScale:
+                    if scale != newScale:
                         ## Disconnect to prevent infinite scaling loop
                         self.canvas.scaleChanged.disconnect(self.scaleChanged)
                         self.canvas.zoomScale(newScale)
@@ -197,17 +198,17 @@ class TileMapScalePlugin:
             createCrs = coordinateReferenceSystem.createFromString("EPSG:3857")
 
             if self.projection != coordinateReferenceSystem:
-                self.projection = self.canvas.mapRenderer().destinationCrs()
+                self.projection = self.canvas.mapSettings().destinationCrs()
 
-            self.canvas.mapRenderer().setDestinationCrs(coordinateReferenceSystem)
+            self.canvas.mapSettings().setDestinationCrs(coordinateReferenceSystem)
         else:
-            self.canvas.mapRenderer().setDestinationCrs(self.projection)
+            self.canvas.mapSettings().setDestinationCrs(self.projection)
 
     def useOnTheFlyTransformation(self):
         if self.dock.checkBoxUseOnTheFlyTransformation.isChecked():
-            self.canvas.mapRenderer().setProjectionsEnabled(True)
+            self.canvas.mapSettings().setProjectionsEnabled(True)
         else:
-            self.canvas.mapRenderer().setProjectionsEnabled(False)
+            self.canvas.mapSettings().setProjectionsEnabled(False)
 
     def storeStatus(self):
         s = QSettings()

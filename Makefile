@@ -17,6 +17,8 @@
 # *                                                                         *
 # ***************************************************************************/
 
+.DEFAULT_GOAL:=zip
+
 # CONFIGURATION
 PLUGIN_UPLOAD = $(CURDIR)/plugin_upload.py
 
@@ -25,7 +27,7 @@ QGISDIR=.qgis2
 # Makefile for a PyQGIS plugin
 
 # translation
-SOURCES = tilemapscaleplugin.py ui_info.py __init__.py info.py tilemapscalelevelswidget.py ui_tilemapscalelevelswidget.py
+SOURCES = tilemapscaleplugin.py ui_info.py __init__.py tilemapscalelevelswidget.py ui_tilemapscalelevelswidget.py
 #TRANSLATIONS = i18n/tilemapscaleplugin_en.ts
 TRANSLATIONS =
 
@@ -33,7 +35,7 @@ TRANSLATIONS =
 
 PLUGINNAME = tilemapscaleplugin
 
-PY_FILES = tilemapscaleplugin.py __init__.py tilemapscalelevelswidget.py info.py
+PY_FILES = tilemapscaleplugin.py __init__.py tilemapscalelevelswidget.py tilemapscalelevels.py
 
 EXTRAS = icon.png metadata.txt
 
@@ -48,10 +50,10 @@ default: compile
 compile: $(UI_FILES) $(RESOURCE_FILES)
 
 %_rc.py : %.qrc
-	pyrcc4 -o $*_rc.py  $<
+	pyrcc5 -o $*_rc.py  $<
 
 %.py : %.ui
-	pyuic4 -o $@ $<
+	pyuic5 --from-imports -o $@ $<
 
 %.qm : %.ts
 	lrelease $<
@@ -65,8 +67,9 @@ deploy: compile doc transcompile
 	cp -vf $(UI_FILES) $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)
 	cp -vf $(RESOURCE_FILES) $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)
 	cp -vf $(EXTRAS) $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)
-	cp -vfr i18n $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)
+	#cp -vfr i18n $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)
 	cp -vfr $(HELP) $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)/help
+	cp -vfr datasets $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)/
 
 # The dclean target removes compiled python files from plugin directory
 # also delets any .svn entry
