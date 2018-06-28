@@ -243,15 +243,11 @@ class TileMapScalePlugin(QObject):
             else:
                 svgData = svgData.replace(FLAT_BLUE, FLAT_RED)
 
-            svg = QSvgRenderer(svgData)
-            image = QImage(iconSize, iconSize, QImage.Format_ARGB32)
-            image.fill(0)
-            painter = QPainter()
-            painter.begin(image)
-            svg.render(painter)
-            painter.end()
-            pixmap = QPixmap.fromImage(image)
-            icon = QIcon(pixmap)
+            pixmap = QPixmap(22,22)
+            pixmap.loadFromData(svgData.encode('utf-8'), "svg")
+
+            icon = QIcon()
+            icon.addPixmap(pixmap, QtGui.QIcon.Normal, QtGui.QIcon.Off)
             component.setIcon(icon)
         else:
             raise IOError("Can't open path: {0}".format(path))
@@ -281,15 +277,19 @@ class TileMapScalePlugin(QObject):
 
     def _getMapIcon(self, filename):
         if any(word in filename for word in ["osm", "openstreetmap"]):
-            return QIcon(":/icons/icons/osm.svg")
+            path = ":/icons/icons/osm.svg"
         elif "google" in filename:
-            return QIcon(":/icons/icons/google.svg")
+            path = ":/icons/icons/google.svg"
         elif "bing" in filename:
-            return QIcon(":/icons/icons/bing.svg")
+            path = ":/icons/icons/bing.svg"
         elif "mapbox" in filename:
-            return QIcon(":/icons/icons/mapbox.svg")
+            path = ":/icons/icons/mapbox.svg"
         else:
-            return QIcon(":/icons/icons/map.png")
+            path = ":/icons/icons/map.png"
+
+        icon = QIcon()
+        icon.addPixmap(QtGui.QPixmap(path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        return icon
 
     def loadSelectedUserDataset(self):
         selectedDataset = self.sender().objectName()
