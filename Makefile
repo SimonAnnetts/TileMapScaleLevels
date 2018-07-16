@@ -17,6 +17,8 @@
 # *                                                                         *
 # ***************************************************************************/
 
+.DEFAULT_GOAL:=zip
+
 # CONFIGURATION
 PLUGIN_UPLOAD = $(CURDIR)/plugin_upload.py
 
