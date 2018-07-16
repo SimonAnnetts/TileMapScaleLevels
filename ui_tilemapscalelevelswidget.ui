@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>474</width>
-    <height>258</height>
+    <height>246</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -56,8 +56,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>430</width>
-             <height>170</height>
+             <width>432</width>
+             <height>161</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -304,8 +304,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>237</width>
-             <height>201</height>
+             <width>432</width>
+             <height>161</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -326,19 +326,6 @@
              <widget class="QCheckBox" name="checkBoxUseMercator">
               <property name="text">
                <string>Use World Mercator System</string>
-              </property>
-              <property name="checked">
-               <bool>false</bool>
-              </property>
-              <property name="tristate">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBoxUseOnTheFlyTransformation">
-              <property name="text">
-               <string>Use 'On-The-Fly' Transformation</string>
               </property>
               <property name="checked">
                <bool>false</bool>

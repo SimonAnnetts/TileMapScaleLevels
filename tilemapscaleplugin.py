@@ -182,8 +182,6 @@ class TileMapScalePlugin(QObject):
 
         # coordinateReferenceSystems
         self.dock.checkBoxUseMercator.stateChanged.connect(self.useMercator)
-        #self.dock.checkBoxUseOnTheFlyTransformation.stateChanged.connect(self.canvas.mapSettings().setProjectionsEnabled)
-        self.dock.checkBoxUseOnTheFlyTransformation.setEnabled(False)
 
         # load datasets and create layer menu's
         self.dock.buttonLoadRefreshUserDatasets.clicked.connect(self.initUserDatasets)
