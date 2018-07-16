@@ -58,10 +58,7 @@ class TileMapServiceCanvasAdapter(QtCore.QObject):
             zoomlevel = self._scaleCalculator.getZoomlevel(self._canvas.scale())
 
             # update zoom behavior
-            #if zoomlevel > self.minZoomlevel() and zoomlevel < self.maxZoomlevel():
-            #    self._canvas.setWheelAction(QgsMapCanvas.WheelZoomToMouseCursor, 2)
-            #else:
-            #    self._canvas.setWheelAction(QgsMapCanvas.WheelZoom, 2)
+            self._canvas.setWheelFactor(2)
 
             # update scale
             if scale <= self.minScale() and scale >= self.maxScale():
