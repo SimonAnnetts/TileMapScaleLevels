@@ -120,7 +120,7 @@ class StateVariable(object):
         return u"{}".format(self._value)
 
 if __name__ == '__main__':
-    from PyQt4 import QtGui, QtCore
+    from PyQt5 import QtGui, QtCore
     import sys
     from random import random
     store = StateStore()
@@ -157,4 +157,4 @@ if __name__ == '__main__':
     store.peter.setValue(10)
 
     sys.exit(app.exec_())
-    
+

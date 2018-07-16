@@ -103,10 +103,10 @@ class TileMapServiceCalculator(object):
             ImportError if Qt is not installed
         """
         try:
-            from PyQt4 import QtGui
+            from PyQt5 import QtGui
             return QtGui.QMainWindow().physicalDpiX()
         except ImportError as e:
-            raise e, "Qt not installed"
+            raise e("Qt not installed")
         except:
             raise
 
@@ -147,5 +147,5 @@ class TileMapServiceCalculator(object):
 
     def calculateScaleStorage(self):
         """pre calculate a scale-zoomlevel key storage for faster lookup"""
-        for zoomlevel in xrange(self.minZoomlevel(), self.maxZoomlevel()):
+        for zoomlevel in range(self.minZoomlevel(), self.maxZoomlevel()):
             self.processedScales[self.getScale(zoomlevel)] = zoomlevel 

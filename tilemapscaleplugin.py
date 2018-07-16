@@ -20,23 +20,24 @@
  ***************************************************************************/
 """
 # Import the PyQt and QGIS libraries
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
-from PyQt4.QtSvg import *
-from PyQt4 import QtCore, QtGui
-from PyQt4.QtCore import pyqtSlot
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtSvg import *
+from PyQt5.QtWidgets import *
+from PyQt5 import QtCore, QtGui
+from PyQt5.QtCore import pyqtSlot
 from qgis.core import *
 from qgis.gui import *
 
-from tms.canvas_adapter import TileMapServiceCanvasAdapter
-from utils.state_store import StateStore
-import resources_rc
-from utils.colors import FLAT_RED, FLAT_GREEN, FLAT_BLUE
+from .tms.canvas_adapter import TileMapServiceCanvasAdapter
+from .utils.state_store import StateStore
+from . import resources_rc
+from .utils.colors import FLAT_RED, FLAT_GREEN, FLAT_BLUE
 
-from tilemapscalelevelswidget import TileMapScaleLevelsDockWidget
+from .tilemapscalelevelswidget import TileMapScaleLevelsDockWidget
 
-from ui_info import Ui_info
-from ui_hud import Ui_hud
+from .ui_info import Ui_info
+from .ui_hud import Ui_hud
 
 import os.path
 
@@ -153,7 +154,7 @@ class TileMapScalePlugin(QObject):
         self.hud.toolButtonTMS.toggled.connect(self.canvasAdapter.setIsActive)
 
         # menu TMS
-        self.menuTMS = QtGui.QMenu(self.canvas)
+        self.menuTMS = QMenu(self.canvas)
         self.hud.toolButtonTMS.setMenu(self.menuTMS)
         self.menuTMS.addAction(self.dock.actionLayers)
         self.menuTMS.addAction(self.dock.actionHUD)
@@ -165,7 +166,7 @@ class TileMapScalePlugin(QObject):
         self.iface.addPluginToWebMenu(self._pluginName, self.dock.actionTMS)
 
         # menu layers
-        self.menuLayers = QtGui.QMenu(self.canvas)
+        self.menuLayers = QMenu(self.canvas)
         self.hud.toolButtonLayers.setMenu(self.menuLayers)
         self.dock.toolButtonLayers.setMenu(self.menuLayers)
         self.dock.actionLayers.setMenu(self.menuLayers)
@@ -181,7 +182,8 @@ class TileMapScalePlugin(QObject):
 
         # coordinateReferenceSystems
         self.dock.checkBoxUseMercator.stateChanged.connect(self.useMercator)
-        self.dock.checkBoxUseOnTheFlyTransformation.stateChanged.connect(self.canvas.mapRenderer().setProjectionsEnabled)
+        #self.dock.checkBoxUseOnTheFlyTransformation.stateChanged.connect(self.canvas.mapSettings().setProjectionsEnabled)
+        self.dock.checkBoxUseOnTheFlyTransformation.setEnabled(False)
 
         # load datasets and create layer menu's
         self.dock.buttonLoadRefreshUserDatasets.clicked.connect(self.initUserDatasets)
@@ -241,7 +243,7 @@ class TileMapScalePlugin(QObject):
             else:
                 svgData = svgData.replace(FLAT_BLUE, FLAT_RED)
 
-            svg = QSvgRenderer(QByteArray(svgData))
+            svg = QSvgRenderer(svgData)
             image = QImage(iconSize, iconSize, QImage.Format_ARGB32)
             image.fill(0)
             painter = QPainter()
@@ -252,7 +254,7 @@ class TileMapScalePlugin(QObject):
             icon = QIcon(pixmap)
             component.setIcon(icon)
         else:
-            raise IOError, "Can't open path: {0}".format(path)
+            raise IOError("Can't open path: {0}".format(path))
 
     def showInfo(self):
         self.dialogInfo = DialogInfo(self.workingDir)
@@ -306,9 +308,9 @@ class TileMapScalePlugin(QObject):
             createCrs = coordinateReferenceSystem.createFromString("EPSG:3857")
 
             if self.projection != coordinateReferenceSystem:
-                self.projection = self.canvas.mapRenderer().destinationCrs()
+                self.projection = self.canvas.mapSettings().destinationCrs()
 
-            self.canvas.mapRenderer().setDestinationCrs(coordinateReferenceSystem)
+            self.canvas.mapSettings().setDestinationCrs(coordinateReferenceSystem)
 
     def storeStatus(self, checked):
         s = QSettings()

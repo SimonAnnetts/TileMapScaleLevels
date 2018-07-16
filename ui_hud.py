@@ -2,70 +2,55 @@
 
 # Form implementation generated from reading ui file 'ui_hud.ui'
 #
-# Created: Tue Feb 23 10:18:47 2016
-#      by: PyQt4 UI code generator 4.10.4
+# Created by: PyQt5 UI code generator 5.5.1
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt4 import QtCore, QtGui
-
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    def _fromUtf8(s):
-        return s
-
-try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
-except AttributeError:
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_hud(object):
     def setupUi(self, hud):
-        hud.setObjectName(_fromUtf8("hud"))
+        hud.setObjectName("hud")
         hud.resize(400, 519)
-        self.frameButtons = QtGui.QFrame(hud)
+        self.frameButtons = QtWidgets.QFrame(hud)
         self.frameButtons.setGeometry(QtCore.QRect(10, 10, 51, 261))
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.frameButtons.sizePolicy().hasHeightForWidth())
         self.frameButtons.setSizePolicy(sizePolicy)
-        self.frameButtons.setFrameShape(QtGui.QFrame.NoFrame)
-        self.frameButtons.setFrameShadow(QtGui.QFrame.Plain)
-        self.frameButtons.setObjectName(_fromUtf8("frameButtons"))
-        self.verticalLayout = QtGui.QVBoxLayout(self.frameButtons)
+        self.frameButtons.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frameButtons.setFrameShadow(QtWidgets.QFrame.Plain)
+        self.frameButtons.setObjectName("frameButtons")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.frameButtons)
+        self.verticalLayout.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
+        self.verticalLayout.setContentsMargins(6, 6, 6, 6)
         self.verticalLayout.setSpacing(3)
-        self.verticalLayout.setSizeConstraint(QtGui.QLayout.SetDefaultConstraint)
-        self.verticalLayout.setMargin(6)
-        self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
-        self.toolButtonLayers = QtGui.QToolButton(self.frameButtons)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.toolButtonLayers = QtWidgets.QToolButton(self.frameButtons)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/icons/legend.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/icons/icons/legend.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.toolButtonLayers.setIcon(icon)
         self.toolButtonLayers.setIconSize(QtCore.QSize(24, 24))
         self.toolButtonLayers.setCheckable(False)
-        self.toolButtonLayers.setPopupMode(QtGui.QToolButton.MenuButtonPopup)
-        self.toolButtonLayers.setObjectName(_fromUtf8("toolButtonLayers"))
+        self.toolButtonLayers.setPopupMode(QtWidgets.QToolButton.MenuButtonPopup)
+        self.toolButtonLayers.setObjectName("toolButtonLayers")
         self.verticalLayout.addWidget(self.toolButtonLayers)
-        self.horizontalLayout_2 = QtGui.QHBoxLayout()
-        self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
-        self.toolButtonIsActive = QtGui.QToolButton(self.frameButtons)
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.toolButtonIsActive = QtWidgets.QToolButton(self.frameButtons)
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/icons/toolButtonIsActive.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/icons/icons/toolButtonIsActive.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.toolButtonIsActive.setIcon(icon1)
         self.toolButtonIsActive.setIconSize(QtCore.QSize(22, 22))
         self.toolButtonIsActive.setCheckable(True)
-        self.toolButtonIsActive.setObjectName(_fromUtf8("toolButtonIsActive"))
+        self.toolButtonIsActive.setObjectName("toolButtonIsActive")
         self.horizontalLayout_2.addWidget(self.toolButtonIsActive)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
-        self.horizontalLayout_4 = QtGui.QHBoxLayout()
-        self.horizontalLayout_4.setObjectName(_fromUtf8("horizontalLayout_4"))
-        self.sliderZoomlevels = QtGui.QSlider(self.frameButtons)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Expanding)
+        self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
+        self.sliderZoomlevels = QtWidgets.QSlider(self.frameButtons)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.sliderZoomlevels.sizePolicy().hasHeightForWidth())
@@ -73,36 +58,39 @@ class Ui_hud(object):
         self.sliderZoomlevels.setMaximum(25)
         self.sliderZoomlevels.setTracking(False)
         self.sliderZoomlevels.setOrientation(QtCore.Qt.Vertical)
-        self.sliderZoomlevels.setTickPosition(QtGui.QSlider.NoTicks)
+        self.sliderZoomlevels.setTickPosition(QtWidgets.QSlider.NoTicks)
         self.sliderZoomlevels.setTickInterval(1)
-        self.sliderZoomlevels.setObjectName(_fromUtf8("sliderZoomlevels"))
+        self.sliderZoomlevels.setObjectName("sliderZoomlevels")
         self.horizontalLayout_4.addWidget(self.sliderZoomlevels)
         self.verticalLayout.addLayout(self.horizontalLayout_4)
-        self.toolButtonTMS = QtGui.QToolButton(hud)
+        self.toolButtonTMS = QtWidgets.QToolButton(hud)
         self.toolButtonTMS.setGeometry(QtCore.QRect(70, 20, 39, 30))
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/icons/toolButtonTMS.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(":/icons/icons/toolButtonTMS.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.toolButtonTMS.setIcon(icon2)
         self.toolButtonTMS.setIconSize(QtCore.QSize(24, 24))
         self.toolButtonTMS.setCheckable(True)
-        self.toolButtonTMS.setPopupMode(QtGui.QToolButton.MenuButtonPopup)
-        self.toolButtonTMS.setObjectName(_fromUtf8("toolButtonTMS"))
+        self.toolButtonTMS.setPopupMode(QtWidgets.QToolButton.MenuButtonPopup)
+        self.toolButtonTMS.setObjectName("toolButtonTMS")
+        self.frameButtons.raise_()
+        self.toolButtonTMS.raise_()
 
         self.retranslateUi(hud)
         QtCore.QMetaObject.connectSlotsByName(hud)
 
     def retranslateUi(self, hud):
-        hud.setWindowTitle(_translate("hud", "Form", None))
-        self.frameButtons.setAccessibleName(_translate("hud", "frameMainButtons", None))
-        self.toolButtonLayers.setToolTip(_translate("hud", "Add Layers", None))
-        self.toolButtonLayers.setStatusTip(_translate("hud", "Add Layers", None))
-        self.toolButtonLayers.setText(_translate("hud", "≡", None))
-        self.toolButtonIsActive.setToolTip(_translate("hud", "Enable/Disable Scale Levels", None))
-        self.toolButtonIsActive.setStatusTip(_translate("hud", "Enable/Disable Scale Levels", None))
-        self.toolButtonIsActive.setText(_translate("hud", "o", None))
-        self.sliderZoomlevels.setToolTip(_translate("hud", "Zoomlevel", None))
-        self.toolButtonTMS.setToolTip(_translate("hud", "Enable/Disable Scale Levels", None))
-        self.toolButtonTMS.setStatusTip(_translate("hud", "Enable/Disable Scale Levels", None))
-        self.toolButtonTMS.setText(_translate("hud", "≡", None))
+        _translate = QtCore.QCoreApplication.translate
+        hud.setWindowTitle(_translate("hud", "Form"))
+        self.frameButtons.setAccessibleName(_translate("hud", "frameMainButtons"))
+        self.toolButtonLayers.setToolTip(_translate("hud", "Add Layers"))
+        self.toolButtonLayers.setStatusTip(_translate("hud", "Add Layers"))
+        self.toolButtonLayers.setText(_translate("hud", "≡"))
+        self.toolButtonIsActive.setToolTip(_translate("hud", "Enable/Disable Scale Levels"))
+        self.toolButtonIsActive.setStatusTip(_translate("hud", "Enable/Disable Scale Levels"))
+        self.toolButtonIsActive.setText(_translate("hud", "o"))
+        self.sliderZoomlevels.setToolTip(_translate("hud", "Zoomlevel"))
+        self.toolButtonTMS.setToolTip(_translate("hud", "Enable/Disable Scale Levels"))
+        self.toolButtonTMS.setStatusTip(_translate("hud", "Enable/Disable Scale Levels"))
+        self.toolButtonTMS.setText(_translate("hud", "≡"))
 
-import resources_rc
+from . import resources_rc

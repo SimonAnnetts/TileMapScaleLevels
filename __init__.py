@@ -23,5 +23,5 @@
 
 def classFactory(iface):
     # load TileMapScalePlugin class from file TileMapScalePlugin
-    from tilemapscaleplugin import TileMapScalePlugin
+    from .tilemapscaleplugin import TileMapScalePlugin
     return TileMapScalePlugin(iface)

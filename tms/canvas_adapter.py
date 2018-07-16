@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 try:
-    from tms.calculator import TileMapServiceCalculator
+    from .tms.calculator import TileMapServiceCalculator
 except ImportError:
-    from calculator import TileMapServiceCalculator
+    from .calculator import TileMapServiceCalculator
 
-from PyQt4 import QtCore
-from PyQt4 import QtGui
-from PyQt4.QtCore import pyqtSlot as Slot, pyqtSignal as Signal
+from PyQt5 import QtCore
+from PyQt5 import QtGui
+from PyQt5.QtCore import pyqtSlot as Slot, pyqtSignal as Signal
 from qgis.gui import (
     QgsMapCanvas
 )
@@ -58,10 +58,10 @@ class TileMapServiceCanvasAdapter(QtCore.QObject):
             zoomlevel = self._scaleCalculator.getZoomlevel(self._canvas.scale())
 
             # update zoom behavior
-            if zoomlevel > self.minZoomlevel() and zoomlevel < self.maxZoomlevel():
-                self._canvas.setWheelAction(QgsMapCanvas.WheelZoomToMouseCursor, 2)
-            else:
-                self._canvas.setWheelAction(QgsMapCanvas.WheelZoom, 2)
+            #if zoomlevel > self.minZoomlevel() and zoomlevel < self.maxZoomlevel():
+            #    self._canvas.setWheelAction(QgsMapCanvas.WheelZoomToMouseCursor, 2)
+            #else:
+            #    self._canvas.setWheelAction(QgsMapCanvas.WheelZoom, 2)
 
             # update scale
             if scale <= self.minScale() and scale >= self.maxScale():
@@ -87,7 +87,7 @@ class TileMapServiceCanvasAdapter(QtCore.QObject):
             zoomlevel (int): Zoom to this zoomlevel. Has to be in range of min/maxZoomlevel.
 
         """
-        print zoomlevel
+        print(zoomlevel)
         if zoomlevel != self._lastZoomlevel:
             self._lastZoomlevel = zoomlevel
 
